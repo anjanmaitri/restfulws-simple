@@ -1,7 +1,5 @@
 package org.restsimple.service;
 
-import org.restsimple.common.Asset;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,13 +8,21 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.restsimple.common.Asset;
+
 @Path("/services")
 public class AssetService {
-
 	
 	@GET
 	@Path("/assets")
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces({MediaType.APPLICATION_JSON})
+	public List<Asset> getAssetsAsObjList() {
+		return retriveAssetsAsList();
+	}
+	
+	@GET
+	@Path("/assetsobj")
+	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	public List<Asset> getAssetsAsList() {
 		return retriveAssetsAsList();
 	}
